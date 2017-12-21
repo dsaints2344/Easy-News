@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+
+    <ion-pane>
+      <ion-header-bar class="bar-assertive" align-title="center">
+        <h1 class="title">Diccionario</h1>
+      </ion-header-bar>
+      <ion-content>
+        
+        <div class="bar bar-header item-input-inset">
+            <button ng-if="showMeaning" class="button button-dark" ng-click="Back()">
+              <i class="icon ion-android-arrow-back"></i>
+            </button>
+            <label ng-show="!showMeaning" class="item-input wrapper">
+                <input type="search" placeholder="Buscar" ng-model="searchInput">
+            </label>
+            
+        </div>
+
+        <ion-list ng-if="!showMeaning">
+          <ion-item ng-if="words.length" ng-repeat="item in words | filter:searchInput" class="item-button-right">
+            {{item.words}}
+            <button class="button button-assertive" ng-click="showWordMeaning(item.id, item.word)">
+              <i class="icon ion-andorid-search"></i>
+            </button>
+          </ion-item>
+          <div ng-show="words.length">
+            <div class="card">
+              <div class="item item-text-wrap">
+                La palabra ingresada, no ha sido encontrada.
+              </div>
+              <div class="item item-image">
+                <img src="img/404.png">
+              </div>
+            </div>
+          </div>
+        </ion-list>
+
+        <div class="card" ng-if="showMeaning">
+          <div class="item item-text-wrap">
+            <h1>{{showContent.word}}</h1>
+            <hr/>
+            {{showContent.meaning}}
+          </div>
+        </div>
+        <div class="item item-image">
+          <img src="{{showContent.img1}}">
+        </div>
+        <div class="item item-image">
+          <img src="{{showContent.img2}}">
+        </div>
+        <div class="item item-image">
+          <img src="{{showContent.img3}}">
+        </div>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>

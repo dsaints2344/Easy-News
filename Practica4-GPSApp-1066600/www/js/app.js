@@ -29,7 +29,7 @@ angular.module('Practica4-GPSApp-1066600', ['ionic','ngCordova'])
 
   var mapOptions = {
     center: new google.maps.LatLng(0, 0),
-    zoom: 12,
+    zoom: 1,
     mapTypeId: google.maps.MapTypeId.ROADMAP};
 
 

@@ -1,9 +1,9 @@
 <ion-view view-title="Account">
   <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+  
+   <fb:login-button 
+  		scope="public_profile,email" onlogin="checkLoginState();">
+	</fb:login-button>
+
   </ion-content>
 </ion-view>

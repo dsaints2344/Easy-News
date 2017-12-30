@@ -1,28 +1,33 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+app.controller('DashCtrl', function($scope) {})
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
-.controller('AccountCtrl', function($scope) {
+app.controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };
 });
+
+app.controller('navController', function($scope,$http){
+
+    $scope.news = [];
+
+    $scope.loadMore = function() {
+        $http.get('https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=87238f079d8a4eebbc3b2010c7efbef0').success(function(items) {
+          useItems(items);
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+        });
+    };
+
+    $http({
+        method: "GET",
+        url: "https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=87238f079d8a4eebbc3b2010c7efbef0"
+    }).then(function(newsData){
+        $scope.news = newsData.data.articles;
+        console.log($scope.news);
+    });
+
+});
+
+

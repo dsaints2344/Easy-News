@@ -1,0 +1,30 @@
+<ion-view view-title="All News" ng-controller="AllNewsCtrl">
+  	<ion-content class="padding">
+	 	<section class = "list card">
+	        <article  ng-repeat="newsArticle in news">
+			<a class="item"  href="#" ng-click="window.open('{{newsArticle.url}}', '_system', 'location=no')">
+				<div class="item item-avatar">
+						<img src="{{newsArticle.urlToImage}}">
+						<h2>{{newsArticle.title}}</h2>
+						<p>{{newsArticle.publishedAt}}</p>
+						
+	
+					  </div>
+					  <div class="item item-body">
+						<img class="full-image" src="{{newsArticle.urlToImage}}">
+						<p>
+							  {{newsArticle.description}}
+					</p>
+					<p>
+				  	<a href="#" class="subdued">Saved</a>
+					</p>
+				</div>
+			</a>
+	        	
+	        </article>
+		</section>
+		<ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>
+
+

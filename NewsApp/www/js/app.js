@@ -61,12 +61,28 @@ app.run(function($ionicPlatform) {
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('settings',{
+    url:'/settings',
+    templateUrl: 'settings.html'
+  })
+
+
+  .state('tab.allnews', {
+    url: '/allnews',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-allnews': {
+        templateUrl: 'templates/tab-allnews.html',
+        controller: 'AllNewsCtrl'
+      }
+    }
+  })
+
+  .state('tab.newsbydate',{
+    url:"/newsbydate",
+    views:{
+      'tab-newsbydate':{
+        templateUrl: "templates/tab-newsbydate.html",
+        controller: 'NewsByDateCtrl'
       }
     }
   })
@@ -86,6 +102,15 @@ app.run(function($ionicPlatform) {
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/allnews');
 
-});
+})
+
+.controller('NavCtrl', function($scope, $ionicSideMenuDelegate) {
+  $scope.showMenu = function () {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+  $scope.showRightMenu = function () {
+    $ionicSideMenuDelegate.toggleRight();
+  };
+})

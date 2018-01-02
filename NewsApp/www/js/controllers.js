@@ -1,6 +1,8 @@
 angular.module('starter.controllers', [])
 
-app.controller('DashCtrl', function($scope) {})
+app.controller('NewsByDateCtrl', function($scope) {
+
+})
 
 
 app.controller('AccountCtrl', function($scope) {
@@ -9,7 +11,7 @@ app.controller('AccountCtrl', function($scope) {
   };
 });
 
-app.controller('navController', function($scope,$http){
+app.controller('AllNewsCtrl', function($scope,$http){
 
     $scope.news = [];
 

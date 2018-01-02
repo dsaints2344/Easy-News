@@ -86,4 +86,5 @@
         <variable name="APP_NAME" value="news" />
     </plugin>
     <engine name="android" spec="~6.3.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^2.0.1" />
 </widget>
